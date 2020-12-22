@@ -1,0 +1,127 @@
+---
+title: "GIS Stack"
+output: html_notebook
+---
+
+## Import Relevant Libraries
+```{r}
+start_time <- Sys.time()
+library(tidyverse)
+library(sf)
+library(sp)
+library(osmdata)
+library(data.table)
+library(pryr)
+```
+
+
+## Create base map (compulsory)
+```{r}
+base_map <- read_sf('../gis_data/Singapore/Singapore.shp')
+ggplot() + 
+  geom_sf(data = base_map$geometry)
+```
+
+
+## Import any administrative unit/ geographic unit districts
+```{r}
+admin_unit_map <- read_sf('../gis_data/Singapore/electoral-boundary-2015-kml.kml')
+ggplot() +
+  geom_sf(data = admin_unit_map$geometry)
+```
+
+
+## Create osm query and retrieve osm data
+```{r}
+query <- opq(bbox = c(as.numeric(base_map$bbox_west), 
+                      as.numeric(base_map$bbox_north), 
+                      as.numeric(base_map$bbox_east), 
+                      as.numeric(base_map$bbox_south))) %>%
+         add_osm_feature('highway') %>%
+         osmdata_sf()
+ggplot() +
+  geom_sf(data = base_map$geometry) +
+  geom_sf(data = query$osm_lines$geometry)
+```
+
+
+## Create intersection
+```{r}
+query_intersection <- st_intersection(base_map$geometry, query$osm_lines$geometry)
+# ggplot() +
+#   geom_sf(data = base_map$geometry) +
+#   geom_sf(data = query_intersection)
+```
+
+
+## Create buffer
+```{r}
+query_intersection_union <- st_union(query_intersection)
+ggplot() +
+  geom_sf(data = base_map$geometry) +
+  geom_sf(data = query_intersection_union)
+```
+
+
+## Sample points
+```{r}
+pnum <- as.integer(ceiling(st_length(query_intersection_union))/1.0) # Sample at every meter
+sampled_multipoints <- st_sample(query_intersection_union, pnum, 'regular')
+sampled_points <- st_cast(sampled_multipoints, "POINT")
+
+admin_units <- st_intersects(x = sampled_points, y = admin_unit_map, sparse = TRUE, prepared=TRUE)
+coords <- st_coordinates(sampled_points)
+final_df <- data.frame("x" = coords[, 1], 
+                       "y" = coords[, 2],
+                       "kml" = unlist(as.integer(admin_units, recursive = TRUE)))
+
+# ggplot() +
+#   geom_sf(data = base_map$geometry) +
+#   geom_sf(data=query_intersection_union, color="blue") +
+#   geom_sf(data = sampled_points, color = "purple", size=0.00001) +
+#   theme(panel.grid=element_line(color="transparent"))
+
+fwrite(final_df, 'extracted_points.csv', sep2 = c("", ";", ""))
+end_time <- Sys.time()
+print(end_time - start_time)
+```
+
+
+## Plot Changi points and see
+```{r}
+final_df <- fread(file =  "../gis_modelling/extracted_points.csv")
+changi_points <- final_df %>%
+  filter(kml==13)
+
+fwrite(x = changi_points, "changi-1m.csv")
+
+sample_changi_points <- sample_n(changi_points, 10000)
+
+ggplot() +
+  #geom_sf(data = base_map$geometry) +  
+  geom_sf(data = admin_unit_map$geometry) +
+  geom_point(data=changi_points, aes(x=x, y=y, group=kml), color='blue', size=0.01) +
+  theme(panel.grid=element_line(color="transparent"))
+```
+
+
+## Plot retrieved points as Changi
+```{r}
+final_df <- fread(file =  "../gis_modelling/extracted_points-with-metadata.csv", quote = "")
+points <- final_df %>%
+  filter(status== "OK") %>%
+  filter(kml==28) %>%
+  filter(ret_lng<= 103.92) %>%
+  filter(ret_lat>= 1.32)
+
+unique_pano_id_points <- points[!duplicated(points$pano_id), ]
+
+ggplot() +
+  #geom_sf(data = base_map$geometry) +    
+  geom_sf(data = admin_unit_map$geometry) +
+  geom_point(data=unique_pano_id_points, aes(x=ret_lng, y=ret_lat), color='purple', size=1) +
+  geom_point(data=unique_pano_id_points, aes(x=long, y=lat), color='blue', size=0.1) +
+  theme(panel.grid=element_line(color="transparent"))
+```
+
+
