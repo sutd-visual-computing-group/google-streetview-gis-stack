@@ -3,6 +3,29 @@ To help visual geo-localization research, this work helps to generate Google Str
 
 
 
+## Pipeline
+
+### Geographic Information System (GIS)
+
+
+
+### Google Static StreetView API
+
+
+
+
+
+## How to use the code?
+
+
+
+
+
 ## Singapore Coverage Map
 
 ![](./assets/Rplot.png)
+
+
+
+## References
+
