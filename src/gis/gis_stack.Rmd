@@ -17,7 +17,7 @@ library(pryr)
 
 ## Create base map (compulsory)
 ```{r}
-base_map <- read_sf('../gis_data/Singapore/Singapore.shp')
+base_map <- read_sf('../data/Singapore.shp')
 ggplot() + 
   geom_sf(data = base_map$geometry)
 ```
@@ -25,7 +25,7 @@ ggplot() +
 
 ## Import any administrative unit/ geographic unit districts
 ```{r}
-admin_unit_map <- read_sf('../gis_data/Singapore/electoral-boundary-2015-kml.kml')
+admin_unit_map <- read_sf('../data/electoral-boundary-2015-kml.kml')
 ggplot() +
   geom_sf(data = admin_unit_map$geometry)
 ```
