@@ -3,9 +3,13 @@ To help large-scale visual geo-localization research, we developed this tool to 
 
 
 
+
+
 ## Problem Statement
 
 Google provides extensive street view panorama coverage in Singapore. To obtain accurate coverage details, we need to query the Google Static StreetView API for the presence of StreetView panorama at multiple geo-locations. A naive way of doing this would be to follow a brute force form of approach querying every possible latitude and longitude spaced at regular intervals to obtain the coverage. Since this is costly and inefficient, we have designed a pipeline to obtain coverage details much more efficiently with no API cost.
+
+
 
 
 
@@ -37,13 +41,13 @@ Google associates every StreetView panorama using a unique id called pano_id. Us
 | pano_id           | Unique panorama id for the specific geo-location             |
 | status            | The status of query returned by Google. (OK, ZERO_RESULTS, OVER_QUERY_LIMIT). If status=ZERO_RESULTS, pano_id is recorded as -1. If OVER_QUERY_LIMIT, we repeat the queries again. |
 
-
-
 A sample retrieved record is shown below.
 
 | lat              | lng              | kml  | ret_lat          | ret_lng          | pano_id                | status |
 | ---------------- | ---------------- | ---- | ---------------- | ---------------- | ---------------------- | ------ |
 | 1.36597564133697 | 103.890522755108 | 1    | 1.36598953663481 | 103.890562223944 | 1aZIE3M2YwiDkzIXdo1Q1Q | OK     |
+
+
 
 
 
@@ -64,6 +68,8 @@ The data directory contains the shapefile and electoral boundary file (https://d
 * In the next step, use these extracted points to query the Google Static StreetView meta-data service (This is a free service) to generate the coverage details using `src/gsv/engine-metadata.py` . 
 
 Do note that Google limits API requests to 50 queries/ second (As of March 2020). More information regarding Google Static StreetView API can be found [here](https://developers.google.com/maps/documentation/streetview/overview). For further details, please refer to the code as it is clearly documented.
+
+
 
 
 
@@ -106,11 +112,15 @@ Using the GIS stack, we sample approximately 12.1 million geo-locations througho
 
 
 
+
+
 ## Singapore Coverage Map
 
 The following map shows the Google StreetView Coverage in Singapore. District-wise color coding is performed.
 
 ![](./assets/Rplot.png)
+
+
 
 
 
@@ -120,9 +130,13 @@ This work was done by Keshigeyan Chandrasegaran (Information Systems Design and 
 
 
 
+
+
 ## Data Access
 
 We do not publish the final retrieved Google Street View meta-data since it contains sensitive information. If you require these data for your research, please contact Keshigeyan (keshigeyan@sutd.edu.sg) / Tran Ngoc-Trung (ngoctrung_tran@sutd.edu.sg). 
+
+
 
 
 
