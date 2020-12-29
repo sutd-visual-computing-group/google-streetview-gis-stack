@@ -5,7 +5,7 @@ To help visual geo-localization research, this tool helps to generate Google Str
 
 ## Problem Statement
 
-Google provides extensive street view coverage in Singapore. To obtain accurate coverage details, we need to query the Google Static StreetView API for the presence of StreetView panorama at multiple geo-locations. A naive way of doing this would be to follow a brute force form of approach querying every possible latitude and longitude spaced at regular intervals to obtain the coverage. Since this is costly and inefficient, we have designed a pipeline to obtain coverage details much more efficiently with no API usage cost.
+Google provides extensive street view coverage in Singapore. To obtain accurate coverage details, we need to query the Google Static StreetView API [[2]](#2) for the presence of StreetView panorama at multiple geo-locations. A naive way of doing this would be to follow a brute force form of approach querying every possible latitude and longitude spaced at regular intervals to obtain the coverage. Since this is costly and inefficient, we have designed a pipeline to obtain coverage details much more efficiently with no API cost.
 
 
 
@@ -19,7 +19,7 @@ The GIS stack performs the following operations to sample unique geo-locations a
 2. Import any administrative unit/ geographic unit districts information as vector file. (We use KML format)
 3. Create osm (Open street maps) query and retrieve osm data
 4. Do geometric operations to find the intersection with base map and perform union of all the resulting regions
-5. Now sample points at 1m distance at regular intervals to create extracted_points.csv. 
+5. Now sample points at 1m distance at regular intervals to create extracted_points.csv.
 
 
 
@@ -64,13 +64,42 @@ Use the ``src/gis/gis_stack.Rmd`` file to sample points at 1m interval using Ope
 
 
 
-## Coverage and GSV statistics
+## Singapore GSV statistics
 
+Using the GIS stack, we sample approximately 12.1 million geo-locations throughout Singapore where we finally obtain a 630, 141 unique geo-locations in Singapore with Google StreetView images. We provide district-wise breakdown of the results in the following table. 
 
-
-
-
-
+| District Name         | KML ID |  #Sampled points | #Unique geo-locations |
+| --------------------- | ------ | ---------------: | --------------------: |
+| Hougang               | 1      |            34018 |                  2312 |
+| Hong Kah North        | 2      |           182639 |                  8322 |
+| Holland - Bukit Timah | 3      |           660731 |                 41148 |
+| Jalan Besar           | 4      |           584320 |                 47563 |
+| Nes Soon              | 5      |           440244 |                 22899 |
+| Punggol East          | 6      |            37493 |                  2561 |
+| Pioneer               | 7      |            43545 |                  2512 |
+| Pasir Ris - Punggol   | 8      |           501844 |                 35108 |
+| Potong Pasir          | 9      |            96389 |                  5920 |
+| Radin Mas             | 10     |            99817 |                  5186 |
+| Sembawang             | 11     |           520941 |                 27385 |
+| Sengkang West         | 12     |            74359 |                  4454 |
+| Tampines              | 13     |           225548 |                 15625 |
+| Tanjong Pagar         | 14     |           760316 |                 49636 |
+| West Coast            | 15     |          2636885 |                 83649 |
+| Yuhua                 | 16     |            52267 |                  2743 |
+| Jurong                | 17     |           386803 |                 23326 |
+| Marine Parade         | 18     |           530209 |                 35864 |
+| MountBatten           | 19     |           206581 |                 14664 |
+| Macpherson            | 20     |            59285 |                  3827 |
+| Marsiling-Yew Tee     | 21     |           403383 |                 19200 |
+| Aljunied              | 22     |           517023 |                 30437 |
+| Ang Mo Kio            | 23     |           627258 |                 35040 |
+| Bukit Batok           | 24     |            43723 |                  2798 |
+| Bukit Panjang         | 25     |            41142 |                  3428 |
+| Bishan-Toa Payoh      | 26     |           491392 |                 34534 |
+| Chua Chu Kang         | 27     |           875273 |                 28783 |
+| East Coast            | 28     |           959480 |                 39236 |
+| Fengshan              | 29     |            34970 |                  1981 |
+|                       |        | **12, 127, 878** |          **630, 141** |
 
 
 
@@ -90,4 +119,4 @@ This work was done by Keshigeyan Chandrasegaran (Information Systems Design and 
 
 <a id="1">[1]</a>  https://data.gov.sg/dataset/electoral-boundary-2015
 
-<a id="1">[2]</a> https://developers.google.com/maps/documentation/streetview/overview
+<a id="2">[2]</a> https://developers.google.com/maps/documentation/streetview/overview
