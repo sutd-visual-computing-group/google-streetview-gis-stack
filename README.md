@@ -1,15 +1,11 @@
 # Google StreetView Geographic Information System (GIS) stack
-To help large-scale visual geo-localization research, we developed this tool to help generate Google Street View coverage maps by leveraging on Geographic Information System (using GIS packages in R) and Google Static Street View API (using Python). This code has been tested with Singapore. Do note that this tool is not intended for production environments and is strictly for use within the SUTD Visual Computing Group.
-
-
+To help large-scale visual geo-localization research, we developed this tool to help generate Google Street View coverage maps by leveraging on Geographic Information System (using GIS packages in R) and Google Static Street View API (using Python). This code has been tested with Singapore. Do note that this tool is not intended for production environments and is for use within the SUTD Visual Computing Group.
 
 
 
 ## Problem Statement
 
 Google provides extensive street view panorama coverage in Singapore. To obtain accurate coverage details, we need to query the Google Static StreetView API for the presence of StreetView panorama at multiple geo-locations. A naive way of doing this would be to follow a brute force form of approach querying every possible latitude and longitude spaced at regular intervals to obtain the coverage. Since this is costly and inefficient, we have designed a pipeline to obtain coverage details much more efficiently with no API cost.
-
-
 
 
 
@@ -49,8 +45,6 @@ A sample retrieved record is shown below.
 
 
 
-
-
 ## How to use the code?
 
 The data directory contains the shapefile and electoral boundary file (https://data.gov.sg/dataset/electoral-boundary-2015) for Singapore. To use Google Static StreetView API, you need an API key with standard permissions. Place the API key and Secret key in a file called proj-env.json. i.e. : The file contents of proj-env.json should look similar to the following:
@@ -68,8 +62,6 @@ The data directory contains the shapefile and electoral boundary file (https://d
 * In the next step, use these extracted points to query the Google Static StreetView meta-data service (This is a free service) to generate the coverage details using `src/gsv/engine-metadata.py` . 
 
 Do note that Google limits API requests to 50 queries/ second (As of March 2020). More information regarding Google Static StreetView API can be found [here](https://developers.google.com/maps/documentation/streetview/overview). For further details, please refer to the code as it is clearly documented.
-
-
 
 
 
@@ -112,15 +104,11 @@ Using the GIS stack, we sample approximately 12.1 million geo-locations througho
 
 
 
-
-
 ## Singapore Coverage Map
 
 The following map shows the Google StreetView Coverage in Singapore. District-wise color coding is performed.
 
 ![](./assets/Rplot.png)
-
-
 
 
 
@@ -130,13 +118,9 @@ This work was done by Keshigeyan Chandrasegaran (Information Systems Design and 
 
 
 
-
-
 ## Data Access
 
 We do not publish the final retrieved Google Street View meta-data since it contains sensitive information. If you require these data for your research, please contact Keshigeyan (keshigeyan@sutd.edu.sg) / Tran Ngoc-Trung (ngoctrung_tran@sutd.edu.sg). 
-
-
 
 
 
