@@ -1,4 +1,4 @@
-# Google Streetview Geographic Information System (GIS) stack
+# Google StreetView Geographic Information System (GIS) stack
 To help visual geo-localization research, this tool helps to generate Google Street View coverage maps by leveraging on Geographic Information System (using GIS packages in R) and Google Static Street View API (using Python). This code has been tested with Singapore. Do note that this tool is not intended for production environments and is strictly for use within the SUTD Visual Computing Group.
 
 
@@ -49,11 +49,30 @@ A sample retrieved record is shown below.
 
 ## How to use the code?
 
+The data directory contains the shapefile and electoral boundary file for Singapore. To use Google Static StreetView API, you need an API key with standard permissions. Place the API key and Secret key in a file called proj-env.json. i.e. : The file contents of proj-env.json should look similar to the following:
+
+```json
+{
+    "API_KEY": "1fgd01ryttsadafs",
+    "SECRET_KEY": "RfgWJHs12qht8Vrg89gzXs="
+}
+```
+
+
+
+Use the ``src/gis/gis_stack.Rmd`` file to sample points at 1m interval using Open Street Maps library. These extracted points will be stored in a csv file. In the next step, use these extracted points to query the Google Static StreetView meta-data service (This is a free service) to generate the coverage details using `src/gsv/engine-metadata.py` .  For further details, please refer to the code as it is clearly documented.
+
+
+
+## Coverage and GSV statistics
 
 
 
 
-## Coverage and GSV meta-data statistics
+
+
+
+
 
 ## Singapore Coverage Map
 
@@ -69,3 +88,6 @@ This work was done by Keshigeyan Chandrasegaran (Information Systems Design and 
 
 ## References
 
+[1] https://data.gov.sg/dataset/electoral-boundary-2015
+
+[2] 
