@@ -27,7 +27,7 @@ The GIS stack performs the following operations to sample unique geo-locations a
 
 Now in this section, we will use the extracted points from the GIS stack to query the Google Static StreetView API meta-data service to check the presence of Google StreetView panorama image. In order to perform a query, we require specific spatial location parameters (Latitude/ Longitude or Plus codes). In the GIS stack, for every sampled point, we extract the corresponding latitude and longitude data.
 
-Google associates every StreetView panorama using a unique id called pano_id. Using the metadata service, we extract all the required information to create the coverage statistics and maps. Every geo-location query will return the following details:
+Google associates every StreetView panorama using a unique id called pano_id. Using the metadata service, we extract all the required information to create the coverage statistics and maps. Every query will return the following details:
 
 | Field             | Details                                                      |
 | ----------------- | ------------------------------------------------------------ |
@@ -58,9 +58,12 @@ The data directory contains the shapefile and electoral boundary file (https://d
 }
 ```
 
-The GIS code is written in R and requires `sp`, `sf`, `tidyverse`, `osmdata`, `data.table` and `pryr` R packages. The GSV code is written in python and to install the dependencies, simply run `pip install -r src/gsv/requirements.txt` . 
+* The GIS code is written in R and requires `sp`, `sf`, `tidyverse`, `osmdata`, `data.table` and `pryr` R packages. 
+* The GSV code is written in python and to install the dependencies, simply run `pip install -r src/gsv/requirements.txt` . 
+* Use the ``src/gis/gis_stack.Rmd`` file to sample points at 1m interval using Open Street Maps library. These extracted points will be stored in a csv file. 
+* In the next step, use these extracted points to query the Google Static StreetView meta-data service (This is a free service) to generate the coverage details using `src/gsv/engine-metadata.py` . 
 
-Use the ``src/gis/gis_stack.Rmd`` file to sample points at 1m interval using Open Street Maps library. These extracted points will be stored in a csv file. In the next step, use these extracted points to query the Google Static StreetView meta-data service (This is a free service) to generate the coverage details using `src/gsv/engine-metadata.py` .  Do note that Google limits API requests to 50 queries/ second (As of March 2020). More information regarding Google Static StreetView API can be found [here](https://developers.google.com/maps/documentation/streetview/overview). For further details, please refer to the code as it is clearly documented.
+Do note that Google limits API requests to 50 queries/ second (As of March 2020). More information regarding Google Static StreetView API can be found [here](https://developers.google.com/maps/documentation/streetview/overview). For further details, please refer to the code as it is clearly documented.
 
 
 
@@ -105,7 +108,7 @@ Using the GIS stack, we sample approximately 12.1 million geo-locations througho
 
 ## Singapore Coverage Map
 
-The following map shows the Google StreetView Coverage in Singapore. District-wise color coding is performed to indicate geo-locations.
+The following map shows the Google StreetView Coverage in Singapore. District-wise color coding is performed.
 
 ![](./assets/Rplot.png)
 
