@@ -58,7 +58,7 @@ The data directory contains the shapefile and electoral boundary file (https://d
 }
 ```
 
-The GIS code is written in R and you require `sp`, `sf`, `tidyverse`, `osmdata`, `data.table` and `pryr` R packages. The GSV code is written in python and to install the dependencies, simply run `pip install -r src/gsv/requirements.txt` . 
+The GIS code is written in R and requires `sp`, `sf`, `tidyverse`, `osmdata`, `data.table` and `pryr` R packages. The GSV code is written in python and to install the dependencies, simply run `pip install -r src/gsv/requirements.txt` . 
 
 Use the ``src/gis/gis_stack.Rmd`` file to sample points at 1m interval using Open Street Maps library. These extracted points will be stored in a csv file. In the next step, use these extracted points to query the Google Static StreetView meta-data service (This is a free service) to generate the coverage details using `src/gsv/engine-metadata.py` .  Do note that Google limits API requests to 50 queries/ second (As of March 2020). More information regarding Google Static StreetView API can be found [here](https://developers.google.com/maps/documentation/streetview/overview). For further details, please refer to the code as it is clearly documented.
 
