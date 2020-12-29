@@ -1,5 +1,5 @@
 # Google StreetView Geographic Information System (GIS) stack
-To help visual geo-localization research, this tool helps to generate Google Street View coverage maps by leveraging on Geographic Information System (using GIS packages in R) and Google Static Street View API (using Python). This code has been tested with Singapore. Do note that this tool is not intended for production environments and is strictly for use within the SUTD Visual Computing Group.
+To help visual geo-localization research, this tool helps to generate Google Street View coverage maps by leveraging on Geographic Information System (using GIS packages in R) and Google Static Street View API [[2]](#2)  (using Python). This code has been tested with Singapore. Do note that this tool is not intended for production environments and is strictly for use within the SUTD Visual Computing Group.
 
 
 
@@ -25,9 +25,9 @@ The GIS stack performs the following operations to sample unique geo-locations a
 
 ### Google Static StreetView (GSV) API
 
-Now in this section, we will use the extracted points from the GIS stack to query the Google Static StreetView metadata API to check the presence of Google StreetView panorama image. In order to perform a query, we require specific spatial location parameters (Latitude/ Longitude or Plus codes). In the GIS stack, for every sampled point, we extract the corresponding latitude and longitude data.
+Now in this section, we will use the extracted points from the GIS stack to query the Google Static StreetView API [[2]](#2) meta-data service to check the presence of Google StreetView panorama image. In order to perform a query, we require specific spatial location parameters (Latitude/ Longitude or Plus codes). In the GIS stack, for every sampled point, we extract the corresponding latitude and longitude data.
 
-Google associates every StreetView panorama using a unique id called pano_id. Using the metadata API service, we extract all the required information to create the coverage statistics and maps. Every geo-location query will return the following details:
+Google associates every StreetView panorama using a unique id called pano_id. Using the metadata service, we extract all the required information to create the coverage statistics and maps. Every geo-location query will return the following details:
 
 | Field             | Details                                                      |
 | ----------------- | ------------------------------------------------------------ |
@@ -49,7 +49,7 @@ A sample retrieved record is shown below.
 
 ## How to use the code?
 
-The data directory contains the shapefile and electoral boundary file for Singapore. To use Google Static StreetView API, you need an API key with standard permissions. Place the API key and Secret key in a file called proj-env.json. i.e. : The file contents of proj-env.json should look similar to the following:
+The data directory contains the shapefile and electoral boundary file [[1]](#1) for Singapore. To use Google Static StreetView API [[2]](#2), you need an API key with standard permissions. Place the API key and Secret key in a file called proj-env.json. i.e. : The file contents of proj-env.json should look similar to the following:
 
 ```json
 {
@@ -88,6 +88,6 @@ This work was done by Keshigeyan Chandrasegaran (Information Systems Design and 
 
 ## References
 
-[1] https://data.gov.sg/dataset/electoral-boundary-2015
+<a id="1">[1]</a>  https://data.gov.sg/dataset/electoral-boundary-2015
 
-[2] 
+<a id="1">[2]</a> https://developers.google.com/maps/documentation/streetview/overview

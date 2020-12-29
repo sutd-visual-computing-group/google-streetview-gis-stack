@@ -236,7 +236,7 @@ class MetaData:
 
 
 if __name__ == "__main__":
-    project_path = '/mnt/workspace/projects/foto-kompass/'
+    project_path = '/projects/foto-kompass/'
     target_csv = os.path.join(project_path, 'data', 'singapore', 'extracted_points.csv')
     save_dir = os.path.join(project_path, 'data', 'singapore', 'gsv_metadata')
     district_list = pd.read_csv(target_csv).reset_index(drop=True).dropna().kml.unique().astype(np.int16)
