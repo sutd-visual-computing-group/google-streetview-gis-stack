@@ -29,13 +29,13 @@ Now in this section, we will use the extracted points from the GIS stack to quer
 
 Google associates every StreetView panorama using a unique id called pano_id. Using the metadata API service, we extract all the required information to create the coverage statistics and maps. Every geo-location query will return the following details:
 
-| Field            | Details                                                      |
-| ---------------- | ------------------------------------------------------------ |
-| lat/ lng         | latitude and longitude extracted from the GIS stack          |
-| kml              | district/ administrative unit                                |
-| ret_lat/ ret_lng | latitude and longitude returned by GSV metadata service. (In many occasions this may slightly differ from the query as Google returns the best match for the query) |
-| pano_id          | Unique panorama id for the specific geo-location             |
-| status           | The status of query returned by Google. (OK, ZERO_RESULTS, OVER_QUERY_LIMIT). If status=ZERO_RESULTS, pano_id is recorded as -1. If OVER_QUERY_LIMIT, we repeat the queries again. |
+| Field             | Details                                                      |
+| ----------------- | ------------------------------------------------------------ |
+| lat/ lng          | latitude and longitude extracted from the GIS stack          |
+| kml               | district/ administrative unit                                |
+| ret_lat/  ret_lng | latitude and longitude returned by GSV metadata service. (In many occasions this may slightly differ from the query as Google returns the best match for the query) |
+| pano_id           | Unique panorama id for the specific geo-location             |
+| status            | The status of query returned by Google. (OK, ZERO_RESULTS, OVER_QUERY_LIMIT). If status=ZERO_RESULTS, pano_id is recorded as -1. If OVER_QUERY_LIMIT, we repeat the queries again. |
 
 
 
