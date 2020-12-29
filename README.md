@@ -58,9 +58,7 @@ The data directory contains the shapefile and electoral boundary file [[1]](#1) 
 }
 ```
 
-
-
-Use the ``src/gis/gis_stack.Rmd`` file to sample points at 1m interval using Open Street Maps library. These extracted points will be stored in a csv file. In the next step, use these extracted points to query the Google Static StreetView meta-data service (This is a free service) to generate the coverage details using `src/gsv/engine-metadata.py` .  For further details, please refer to the code as it is clearly documented.
+Use the ``src/gis/gis_stack.Rmd`` file to sample points at 1m interval using Open Street Maps library. These extracted points will be stored in a csv file. In the next step, use these extracted points to query the Google Static StreetView meta-data service (This is a free service) to generate the coverage details using `src/gsv/engine-metadata.py` .  Do note that Google limits API requests to 50 queries/ second (As of March 2020). For further details, please refer to the code as it is clearly documented.
 
 
 
@@ -105,6 +103,8 @@ Using the GIS stack, we sample approximately 12.1 million geo-locations througho
 
 ## Singapore Coverage Map
 
+The following map shows the Google StreetView Coverage in Singapore. District-wise color coding is performed to indicate geo-locations.
+
 ![](./assets/Rplot.png)
 
 
@@ -112,6 +112,12 @@ Using the GIS stack, we sample approximately 12.1 million geo-locations througho
 ## Acknowledgements
 
 This work was done by Keshigeyan Chandrasegaran (Information Systems Design and Technology) during his time at [Temasek Laboratories, Singapore University of Technology and Design](https://temasek-labs.sutd.edu.sg/). Please contact him at keshigeyan@sutd.edu.sg regarding any further questions. 
+
+
+
+## Data Access
+
+We do not publish the final retrieved Google Street View meta-data since it contains sensitive information. If you require these data for your research, please contact Keshigeyan (keshigeyan@sutd.edu.sg) / Tran Ngoc-Trung (ngoctrung_tran@sutd.edu.sg).  
 
 
 
