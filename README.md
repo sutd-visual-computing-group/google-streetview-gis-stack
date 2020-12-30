@@ -122,7 +122,7 @@ This work was done by Keshigeyan Chandrasegaran (Information Systems Design and 
 
 ## Data Access
 
-We do not publish the final retrieved Google Street View meta-data since it contains sensitive information. If you require these data for your research, please contact Keshigeyan (keshigeyan@sutd.edu.sg) / Tran Ngoc-Trung (ngoctrung_tran@sutd.edu.sg).  
+We do not publish the final retrieved Google Street View meta-data since it contains sensitive information. If you require these data for your research, please contact Keshigeyan (keshigeyan@sutd.edu.sg) / Dr. Tran Ngoc-Trung (ngoctrung_tran@sutd.edu.sg).  
 
 
 
