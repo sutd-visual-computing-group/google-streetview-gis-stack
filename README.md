@@ -1,5 +1,5 @@
 # Google StreetView Geographic Information System (GIS) stack
-To help large-scale visual geo-localization research, we developed this tool to help generate Google Street View coverage maps by leveraging on Geographic Information System (using GIS packages in R) and Google Static Street View API (using Python). This code has been tested with Singapore. Do note that this tool is not intended for production environments and is for use within the SUTD Visual Computing Group.
+To help large-scale visual geo-localization research, we developed this tool to help generate Google Street View coverage maps by leveraging on Geographic Information System (using GIS packages in R) and Google Static Street View API (using Python). This code has been tested with Singapore. Do note that this tool is not intended for production environments and is for use within the SUTD Visual Computing Group. This tool helps to obtain Google StreetView metadata and not the actual panoramas. Google has strict regulations regarding the use of Google StreetView panoramas and details can be found [here](https://cloud.google.com/maps-platform/terms/#10-license-restrictions).
 
 
 
@@ -120,7 +120,7 @@ This work was done by Keshigeyan Chandrasegaran (Information Systems Design and 
 
 ## Data Access
 
-We do not publish the final retrieved Google Street View meta-data since it contains sensitive information. If you require these data for your research, please contact Keshigeyan (keshigeyan@sutd.edu.sg) / Tran Ngoc-Trung (ngoctrung_tran@sutd.edu.sg). 
+We do not publish the final retrieved Google Street View meta-data since it contains sensitive information. If you require these data for your research, please contact Keshigeyan (keshigeyan@sutd.edu.sg) / Tran Ngoc-Trung (ngoctrung_tran@sutd.edu.sg).  
 
 
 
