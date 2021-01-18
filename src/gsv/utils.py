@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+# Source : https://developers.google.com/maps/documentation/maps-static/get-api-key
 import hashlib
 import hmac
 import base64
